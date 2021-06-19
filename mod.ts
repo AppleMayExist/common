@@ -1,11 +1,11 @@
 import * as color from "https://deno.land/std@0.99.0/fmt/colors.ts"
 
-// /**
-//  * FYI: Minimum and maximum numbers ARE included.
-//  */
-// export const random = (min: number, max: number) => {
-
-// }
+/**
+ * FYI: Minimum and maximum numbers ARE included.
+ */
+export const random = (min: number, max: number) => {
+    return Math.round(Math.random() * (max - min) + min)
+}
 
 export const error = (str: string, errorCode?: number) => {
     console.error(color.bgBlack(color.red(str.trim())))
