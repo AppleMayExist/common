@@ -30,6 +30,7 @@ export const isJSON = (data: string | Uint8Array) => {
  * @param removeNewLine Whether to trim the edges (whitespace). True by default.
  */
 export const input = async (Uint8ArraySize = 1024, trim = true) => {
+    if (!isDeno) {error("This function is only compatible with Deno!"); return}
     const x = new Uint8Array(Uint8ArraySize);
     await Deno.stdin.read(x);
     return trim ? new TextDecoder().decode(x).trim() : new TextDecoder().decode(x);
@@ -41,6 +42,7 @@ export const input = async (Uint8ArraySize = 1024, trim = true) => {
  * @param trim Whether to trim the edges (whitespace). True by default.
  */
  export const inputSync = (Uint8ArraySize = 1024, trim = true) => {
+    if (!isDeno) {error("This function is only compatible with Deno!"); return}
     const x = new Uint8Array(Uint8ArraySize);
     Deno.stdin.readSync(x);
     return trim ? new TextDecoder().decode(x).trim() : new TextDecoder().decode(x);
@@ -54,6 +56,7 @@ export const input = async (Uint8ArraySize = 1024, trim = true) => {
  * @param disableSetRaw States whether to disable setRaw in stdin when finished. True by default.
  */
 export const inputRaw = async function*(returnChar = false, disableSetRaw = true) {
+    if (!isDeno) {error("This function is only compatible with Deno!"); return}
     Deno.setRaw(0, true);
     const x = new Uint8Array(1);
     while (true) {
