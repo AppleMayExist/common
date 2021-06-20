@@ -62,7 +62,7 @@ export const inputRaw = async function*(returnChar = false, disableSetRaw = true
     while (true) {
         await Deno.stdin.read(x);
         if ([0, 10, 13].includes(x[0])) {break;}
-        else {yield returnChar ? x[0] : new TextDecoder().decode(x);}
+        else {yield returnChar ? new TextDecoder().decode(x) : x[0];}
     }
     disableSetRaw && Deno.setRaw(0, false);
     return;
