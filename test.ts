@@ -1,18 +1,9 @@
-import {random, isJSON, error} from "./mod.ts";
+// This file contains no actual methods for consistently testing the functionality of this module,
+// however is just a way for me to informally test things that I've recently added (in the same workspace).
+// There is nothing important in here, so if you want to use it, that's fine.
 
-console.log("some random numbers for you!");
-for (let i = 0; i < 10; i++) {
-    console.log(random(i, i + 10));
+import {inputRaw} from "./mod.ts"
+
+for await (const i of inputRaw()) {
+    console.log(i)
 }
-
-console.log("Please input text, I'll tell you whether it's valid JSON.");
-const x = new Uint8Array(1024);
-await Deno.stdin.read(x);
-
-isJSON(x.map((e) => {
-    if (e === 0) {return 32}
-    return e
-})) ? console.log("Valid JSON") : console.log("Invalid JSON");
-
-console.log("Now I'm gonna error out.");
-error("peace");
