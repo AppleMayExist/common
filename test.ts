@@ -4,6 +4,6 @@
 
 import {inputRaw} from "./mod.ts"
 
-for await (const i of inputRaw()) {
+for await (const i of inputRaw(true)) {
     console.log(i)
 }
