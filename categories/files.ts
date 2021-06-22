@@ -4,7 +4,7 @@ export interface Stats {
     exists: boolean
     isFile: boolean
     isDir: boolean
-    isSymlink: boolean
+    isLink: boolean
 }
 
 /**
@@ -18,7 +18,7 @@ export const getStats = async (location: string): Promise<Stats> => {
         exists: exists,
         isFile: exists ? (await Deno.stat(location)).isFile : false,
         isDir: exists ? (await Deno.stat(location)).isDirectory : false,
-        isSymlink: exists ? (await Deno.stat(location)).isSymlink : false
+        isLink: exists ? (await Deno.stat(location)).isSymlink : false
     };
 };
 
@@ -33,6 +33,6 @@ export const getStats = async (location: string): Promise<Stats> => {
         exists: exists,
         isFile: exists ? (Deno.statSync(location)).isFile : false,
         isDir: exists ? (Deno.statSync(location)).isDirectory : false,
-        isSymlink: exists ? (Deno.statSync(location)).isSymlink : false
+        isLink: exists ? (Deno.statSync(location)).isSymlink : false
     };
 };
